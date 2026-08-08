@@ -1,8 +1,10 @@
+import java.util.Scanner;
+
 class Stack {
     int[] stack = new int[5];
     int top = -1;
 
-    // Push
+   
     void push(int value) {
         if (isFull()) {
             System.out.println("Stack Overflow");
@@ -12,7 +14,6 @@ class Stack {
         }
     }
 
-    // Pop
     void pop() {
         if (isEmpty()) {
             System.out.println("Stack Underflow");
@@ -22,7 +23,7 @@ class Stack {
         }
     }
 
-    // Peek
+    
     void peek() {
         if (isEmpty()) {
             System.out.println("Stack is empty");
@@ -31,7 +32,7 @@ class Stack {
         }
     }
 
-    // Display
+   
     void display() {
         if (isEmpty()) {
             System.out.println("Stack is empty");
@@ -43,12 +44,12 @@ class Stack {
         }
     }
 
-    // Check if stack is empty
+    
     boolean isEmpty() {
         return top == -1;
     }
 
-    // Check if stack is full
+   
     boolean isFull() {
         return top == stack.length - 1;
     }
@@ -57,19 +58,62 @@ class Stack {
 public class main {
     public static void main(String[] args) {
 
+        Scanner scanner = new Scanner(System.in);
         Stack s = new Stack();
 
-        s.push(10);
-        s.push(20);
-        s.push(30);
+        boolean running = true;
 
-        s.display();
+        while (running) {
+            System.out.println("\n== STACK MENU ==");
+            System.out.println("1. Push");
+            System.out.println("2. Pop");
+            System.out.println("3. Peek");
+            System.out.println("4. Display");
+            System.out.println("5. Check if Empty");
+            System.out.println("6. Check if Full");
+            System.out.println("7. Exit");
+            System.out.print("Enter your choice: ");
 
-        s.peek();
+            int choice = scanner.nextInt();
 
-        s.pop();
+            switch (choice) {
 
-        System.out.println("Is Stack Empty? " + s.isEmpty());
-        System.out.println("Is Stack Full? " + s.isFull());
+                case 1:
+                    System.out.print("Enter value to push: ");
+                    int value = scanner.nextInt();
+                    s.push(value);
+                    break;
+
+                case 2:
+                    s.pop();
+                    break;
+
+                case 3:
+                    s.peek();
+                    break;
+
+                case 4:
+                    s.display();
+                    break;
+
+                case 5:
+                    System.out.println("Is Stack Empty? " + s.isEmpty());
+                    break;
+
+                case 6:
+                    System.out.println("Is Stack Full? " + s.isFull());
+                    break;
+
+                case 7:
+                    System.out.println("Exiting program...");
+                    running = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid choice! Please enter a number from 1 to 7.");
+            }
+        }
+
+        scanner.close();
     }
 }
